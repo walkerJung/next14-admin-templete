@@ -13,6 +13,7 @@ import {
   MdHelpCenter,
   MdLogout,
 } from "react-icons/md";
+import { signOut } from "@/auth";
 
 const menuItems = [
   {
@@ -103,10 +104,17 @@ const Sidebar = () => {
           </li>
         ))}
       </ui>
-      <button className={styles.logout}>
-        <MdLogout />
-        Logout
-      </button>
+      <form
+        action={async () => {
+          "use server";
+          await signOut();
+        }}
+      >
+        <button className={styles.logout}>
+          <MdLogout />
+          Logout
+        </button>
+      </form>
     </div>
   );
 };
